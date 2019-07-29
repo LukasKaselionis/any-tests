@@ -1,0 +1,14 @@
+{
+    "name": "lkaselionis/any-tests",
+    "description": "tests system",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas",
+            "email": "l.kaselionis@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
