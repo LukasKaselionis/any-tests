@@ -11,3 +11,5 @@ Tests system by categories
 ## Installation
 
 - Run `composer install` command
+- Create database and login credentials
+- Run `vendor/bin/migrate migrate:addenv dev` command for development environment and add `mysql` credentials
