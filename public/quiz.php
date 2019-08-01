@@ -18,38 +18,49 @@ if ($quizSlug === null)
 }
 
 $questionModel = new Question();
-$questions = $questionModel->getByQuizSlug((string)$quizSlug);
 
 $questionChoiceModel = new QuestionChoice();
-$questionsChoices = $questionChoiceModel->getChoiceByQuestionId((string)$quizSlug);
+
+$questions = $questionModel->getByQuizSlug((string)$quizSlug);
 
 ?>
 
-<form action="" method="post">
+<form action="quiz_result.php" method="post">
+    <input type="hidden" name="quiz_slug" value="<?= $quizSlug ?>">
+
+    <label for="name">First name</label>
+        <input type="text" name="name" value="" required>
+    <br>
+    <label for="last_name">Last name</label>
+    <input type="text" name="last_name" value="" required>
+    <br>
+    <label for="email">Email</label>
+    <input type="email" name="email" value="" required>
+
+
     <?php
     // Loop and display questions
     foreach ($questions as $key => $question) {
         ?>
-
         <p><?= $key + 1 ?> <?= $question['question'] ?></p>
-
-        <br>
         <?php
-
         // display each question choices
-        foreach ($questionsChoices as $questionsChoice)
-        {
-            ?>
-
-            <p><?= $questionsChoice['choice'] ?></p>
-
-            <?php
-
-        }
-
-
+        $choices = $questionChoiceModel->getByQuestionId($question['id']);
+        // print_r($choices);
         ?>
-
+        <ul style="list-style-type: lower-alpha;">
+        <?php
+        foreach ($choices as $choice) {
+            ?>
+                <li>
+                    <label>
+                    <input type="radio" name="choice_<?= $question['id'] ?>" value="<?= $choice['id'] ?>"> <?= $choice['choice'] ?>
+                    </label>
+                </li>
+            <?php
+        }
+        ?>
+        </ul>
     <?php
     }
     ?>

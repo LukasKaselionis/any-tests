@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.2",
         "ext-pdo": "*",
+        "ext-json": "*",
         "php-database-migration/php-database-migration": "^3.8"
     },
     "autoload": {
